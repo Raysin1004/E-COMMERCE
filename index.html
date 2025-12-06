@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotorShop - Premium Motorcycle Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #e94560;
+            --accent: #0f3460;
+            --light: #f0f0f0;
+            --dark: #16213e;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --card-gradient: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
+            --shadow: 0 10px 20px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: var(--gradient);
+            color: var(--light);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(233, 69, 96, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(15, 52, 96, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(22, 33, 62, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(26, 26, 46, 0.95);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--light);
+        }
+        
+        .user-info span {
+            font-weight: 500;
+        }
+        
+        .logout-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(233, 69, 96, 0.2);
+            border-color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: url('https://tse4.mm.bing.net/th/id/OIP.4TNYVHoff43x3z9-eAuFTAHaEO?cb=ucfimg2&ucfimg=1&w=1230&h=702&rs=1&pid=ImgDetMain&o=7&rm=3') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary) 0%, #c1355a 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Login Form Styles */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 40px 0;
+        }
+        
+        .login-form {
+            background: var(--card-gradient);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 450px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(233, 69, 96, 0.1), transparent);
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--light);
+            font-size: 28px;
+            position: relative;
+        }
+        
+        .login-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: rgba(255,255,255,0.1);
+            color: var(--light);
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.2);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .user-type {
+            display: flex;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .user-type label {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            margin: 0;
+            transition: var(--transition);
+        }
+        
+        .user-type input {
+            display: none;
+        }
+        
+        .user-type input:checked + label {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        .product-card {
+            background: var(--card-gradient);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .product-img-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 25px;
+        }
+        
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        
+        .product-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .product-description {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* Shopping Cart */
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.95);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            transition: right 0.4s ease;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-container.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-header h3 {
+            color: var(--light);
+            font-size: 22px;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-cart:hover {
+            color: var(--secondary);
+        }
+        
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+        
+        .cart-item-price {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: var(--accent);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .cart-item-quantity {
+            margin: 0 5px;
+            font-weight: bold;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            margin-left: auto;
+            transition: var(--transition);
+        }
+        
+        .remove-item:hover {
+            color: #ff3838;
+        }
+        
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--success) 0%, #219653 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        /* Payment Modal */
+        .payment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .payment-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .payment-form {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transform: translateY(-20px);
+            transition: transform 0.3s;
+        }
+        
+        .payment-modal.active .payment-form {
+            transform: translateY(0);
+        }
+        
+        .payment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .payment-header h3 {
+            color: var(--light);
+            font-size: 24px;
+        }
+        
+        .close-payment {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-payment:hover {
+            color: var(--secondary);
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .payment-method.active {
+            border-color: var(--secondary);
+            background: rgba(233, 69, 96, 0.1);
+        }
+        
+        .payment-method i {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .payment-details {
+            margin-top: 20px;
+        }
+        
+        /* Transaction History */
+        .transaction-history {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .transaction-history h3 {
+            margin-bottom: 20px;
+            color: var(--light);
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .transactions-table th,
+        .transactions-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .transactions-table th {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .transactions-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status.completed {
+            background: rgba(39, 174, 96, 0.2);
+            color: var(--success);
+        }
+        
+        .status.pending {
+            background: rgba(243, 156, 18, 0.2);
+            color: var(--warning);
+        }
+        
+        .status.failed {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--danger);
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            padding: 40px 0;
+        }
+        
+        .admin-panel h2 {
+            margin-bottom: 30px;
+            color: var(--light);
+            font-size: 32px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .admin-panel h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .admin-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--accent) 0%, #0d2b52 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(15, 52, 96, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .admin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(15, 52, 96, 0.4);
+        }
+        
+        .admin-btn:active {
+            transform: translateY(0);
+        }
+        
+        .add-product-form {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        /* Hidden elements */
+        .hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(15, 20, 35, 0.9);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--secondary);
+            font-size: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-section p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 30px;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .user-info {
+                margin-top: 10px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .admin-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .admin-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .login-form {
+                padding: 30px 20px;
+            }
+            
+            .cart-container {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .transactions-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c1355a;
+        }
+        
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 350px;
+            animation: slideInRight 0.3s ease-out;
+        }
+        
+        .toast.success {
+            background: var(--success);
+        }
+        
+        .toast.error {
+            background: var(--danger);
+        }
+        
+        .toast.warning {
+            background: var(--warning);
+        }
+        
+        .toast.info {
+            background: var(--accent);
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--secondary);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Search Bar */
+        .search-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px 0 0 8px;
+            background: rgba(255,255,255,0.1);
+            color: var(--light);
+            font-size: 16px;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .search-btn {
+            padding: 12px 20px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-btn:hover {
+            background: #c1355a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-motorcycle"></i>
+                    Motor<span>Shop</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#" id="home-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#" id="products-link"><i class="fas fa-motorcycle"></i> Products</a></li>
+                        <li id="auth-section">
+                            <!-- This will be dynamically populated -->
+                        </li>
+                        <li class="cart-icon" id="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cart-count">0</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Motorcycles for Every Rider</h1>
+                <p>Discover our exclusive collection of high-performance motorcycles with the best prices and premium service.</p>
+                <div class="hero-btns">
+                    <button class="btn btn-primary" id="explore-btn">
+                        <i class="fas fa-motorcycle"></i> Explore Collection
+                    </button>
+                    <button class="btn btn-secondary" id="learn-more-btn">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart -->
+    <div class="cart-container" id="cart-container">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">₱0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="payment-modal">
+        <div class="payment-form">
+            <div class="payment-header">
+                <h3>Payment Method</h3>
+                <button class="close-payment" id="close-payment">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="payment-methods">
+                <div class="payment-method active" data-method="credit-card">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Credit Card</span>
+                </div>
+                <div class="payment-method" data-method="gcash">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>GCash</span>
+                </div>
+                <div class="payment-method" data-method="paypal">
+                    <i class="fab fa-paypal"></i>
+                    <span>PayPal</span>
+                </div>
+            </div>
+            <div class="payment-details" id="payment-details">
+                <!-- Payment details will be dynamically added here -->
+            </div>
+            <button class="btn btn-primary" id="confirm-payment" style="margin-top: 20px;">Confirm Payment</button>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <section id="login-page" class="login-container hidden">
+        <div class="login-form fade-in">
+            <h2>Login to MotorShop</h2>
+            <div class="user-type">
+                <input type="radio" id="customer-login" name="user-type" value="customer" checked>
+                <label for="customer-login"><i class="fas fa-user"></i> Customer</label>
+                <input type="radio" id="admin-login" name="user-type" value="admin">
+                <label for="admin-login"><i class="fas fa-cog"></i> Admin</label>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" class="form-control" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter your password">
+            </div>
+            <button id="login-btn" class="btn btn-primary">Login <i class="fas fa-arrow-right"></i></button>
+            <p style="text-align: center; margin-top: 20px; color: rgba(255,255,255,0.7);">
+                Don't have an account? <a href="#" style="color: var(--secondary); text-decoration: none;">Sign up</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Customer Dashboard -->
+    <section id="customer-dashboard" class="container hidden">
+        <h2 style="margin: 40px 0 30px; text-align: center; font-size: 36px;">Available Motorcycles</h2>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="search-input" placeholder="Search for motorcycles...">
+                <button class="search-btn" id="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="products-grid" id="customer-products">
+            <!-- Products will be dynamically added here -->
+        </div>
+
+        <!-- Transaction History -->
+        <div class="transaction-history">
+            <h3>Transaction History</h3>
+            <div class="transactions-table-container">
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-history">
+                        <!-- Transaction history will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="admin-dashboard" class="container hidden">
+        <div class="admin-panel">
+            <h2>Admin Dashboard</h2>
+            <div class="admin-actions">
+                <button id="add-product-btn" class="admin-btn"><i class="fas fa-plus"></i> Add New Product</button>
+                <button id="view-products-btn" class="admin-btn"><i class="fas fa-eye"></i> View All Products</button>
+                <button id="view-transactions-btn" class="admin-btn"><i class="fas fa-history"></i> View Transactions</button>
+                <button id="logout-admin" class="admin-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+            
+            <div id="add-product-form" class="add-product-form hidden fade-in">
+                <h3 style="margin-bottom: 20px; color: var(--light); text-align: center;">Add New Product</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" class="form-control" placeholder="Enter product name">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Price</label>
+                        <input type="number" id="product-price" class="form-control" placeholder="Enter price">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Image URL</label>
+                    <input type="text" id="product-image" class="form-control" placeholder="Enter image URL">
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" class="form-control" rows="4" placeholder="Enter product description"></textarea>
+                </div>
+                <button id="save-product-btn" class="btn btn-primary">Save Product <i class="fas fa-save"></i></button>
+            </div>
+            
+            <div id="admin-products">
+                <h3 style="margin: 40px 0 20px; text-align: center;">All Products</h3>
+                <div class="products-grid" id="admin-products-grid">
+                    <!-- Admin products will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Admin Transaction History -->
+            <div id="admin-transactions" class="transaction-history hidden">
+                <h3>All Transactions</h3>
+                <div class="transactions-table-container">
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Amount</th>
+                                <th>Payment Method</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-transaction-history">
+                            <!-- Admin transaction history will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About MotorShop</h3>
+                    <p>Your trusted partner for quality motorcycles and accessories. We offer the best brands at competitive prices with premium customer service.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Products</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Motor Street, Manila, Philippines</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +63 912 345 6789</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@motorshop.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MotorShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced MotorShop Application
+        class MotorShop {
+            constructor() {
+                this.products = JSON.parse(localStorage.getItem('products')) || this.getDefaultProducts();
+                this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+                this.transactions = JSON.parse(localStorage.getItem('transactions')) || this.getDefaultTransactions();
+                this.currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+                this.currentPaymentMethod = 'credit-card';
+                
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+                this.updateCart();
+                this.displayCustomerProducts();
+                this.updateNavigation();
+                
+                // Check if user is already logged in
+                if (this.currentUser) {
+                    this.showDashboard(this.currentUser.type);
+                } else {
+                    this.showHomePage();
+                }
+            }
+            
+            getDefaultProducts() {
+                return [
+                    {
+                        id: 1,
+                        name: "Yamaha NMAX",
+                        price: 125000,
+                        image: "https://images.unsplash.com/photo-1558618666-fcd25856cd23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        description: "Automatic scooter with excellent fuel efficiency and comfortable ride. Perfect for city commuting."
+                    },
+                    {
+                        id: 2,
+                        name: "Honda Beat",
+                        price: 68000,
+                        image: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        description: "Economical and reliable scooter perfect for city commuting. Low maintenance and high efficiency."
+                    },
+                    {
+                        id: 3,
+                        name: "Kawasaki Ninja 650",
+                        price: 420000,
+                        image: "https://images.unsplash.com/photo-1572314831029-5b729a0b6bfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        description: "Sporty motorcycle with powerful engine and sleek design. Ideal for both city and highway riding."
+                    },
+                    {
+                        id: 4,
+                        name: "Suzuki Raider",
+                        price: 95000,
+                        image: "https://images.unsplash.com/photo-1517672654531-214122f9c0db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        description: "Sporty underbone motorcycle with powerful performance and aggressive styling."
+                    },
+                    {
+                        id: 5,
+                        name: "Honda CRF250L",
+                        price: 210000,
+                        image: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        description: "Dual-sport motorcycle perfect for both on-road and off-road adventures."
+                    },
+                    {
+                        id: 6,
+                        name: "Yamaha R15",
+                        price: 150000,
+                        image: "https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        description: "Sport bike with racing DNA, perfect for enthusiasts and daily commuting."
+                    }
+                ];
+            }
+            
+            getDefaultTransactions() {
+                return [
+                    {
+                        id: "ORD-001",
+                        customer: "Juan Dela Cruz",
+                        date: "2023-10-15",
+                        items: "Yamaha NMAX",
+                        amount: 125000,
+                        paymentMethod: "Credit Card",
+                        status: "completed"
+                    },
+                    {
+                        id: "ORD-002",
+                        customer: "Maria Santos",
+                        date: "2023-10-18",
+                        items: "Honda Beat",
+                        amount: 68000,
+                        paymentMethod: "GCash",
+                        status: "completed"
+                    },
+                    {
+                        id: "ORD-003",
+                        customer: "Pedro Reyes",
+                        date: "2023-10-20",
+                        items: "Kawasaki Ninja 650",
+                        amount: 420000,
+                        paymentMethod: "PayPal",
+                        status: "pending"
+                    }
+                ];
+            }
+            
+            bindEvents() {
+                // Navigation
+                document.getElementById('home-link').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.showHomePage();
+                });
+                
+                document.getElementById('products-link').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (this.currentUser) {
+                        this.showDashboard(this.currentUser.type);
+                    } else {
+                        this.showLoginPage();
+                    }
+                });
+                
+                document.getElementById('explore-btn').addEventListener('click', () => {
+                    if (this.currentUser) {
+                        this.showDashboard(this.currentUser.type);
+                        document.getElementById('customer-dashboard').scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        this.showLoginPage();
+                    }
+                });
+                
+                document.getElementById('learn-more-btn').addEventListener('click', () => {
+                    this.showToast('Learn more about our premium motorcycle collection!', 'info');
+                });
+                
+                // Login
+                document.getElementById('login-btn').addEventListener('click', () => {
+                    this.handleLogin();
+                });
+                
+                // Cart
+                document.getElementById('cart-icon').addEventListener('click', () => {
+                    document.getElementById('cart-container').classList.add('active');
+                });
+                
+                document.getElementById('close-cart').addEventListener('click', () => {
+                    document.getElementById('cart-container').classList.remove('active');
+                });
+                
+                // Checkout
+                document.getElementById('checkout-btn').addEventListener('click', () => {
+                    this.handleCheckout();
+                });
+                
+                // Payment
+                document.getElementById('close-payment').addEventListener('click', () => {
+                    document.getElementById('payment-modal').classList.remove('active');
+                });
+                
+                document.getElementById('confirm-payment').addEventListener('click', () => {
+                    this.processPayment();
+                });
+            }
+            
+            updateNavigation() {
+                const authSection = document.getElementById('auth-section');
+                
+                if (this.currentUser) {
+                    // User is logged in
+                    authSection.innerHTML = `
+                        <div class="user-info">
+                            <span>Welcome, ${this.currentUser.username}</span>
+                            <button class="logout-btn" id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    `;
+                    
+                    // Add logout event listener
+                    document.getElementById('logout-btn').addEventListener('click', () => {
+                        this.handleLogout();
+                    });
+                } else {
+                    // User is not logged in
+                    authSection.innerHTML = `
+                        <a href="#" id="login-link-nav"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    `;
+                    
+                    // Add login event listener
+                    document.getElementById('login-link-nav').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.showLoginPage();
+                    });
+                }
+            }
+            
+            bindPaymentEvents() {
+                document.querySelectorAll('.payment-method').forEach(method => {
+                    method.addEventListener('click', () => {
+                        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                        method.classList.add('active');
+                        this.currentPaymentMethod = method.dataset.method;
+                        this.updatePaymentDetails();
+                    });
+                });
+            }
+            
+            bindAdminEvents() {
+                document.getElementById('add-product-btn').addEventListener('click', () => {
+                    document.getElementById('add-product-form').classList.remove('hidden');
+                    document.getElementById('admin-products').classList.remove('hidden');
+                    document.getElementById('admin-transactions').classList.add('hidden');
+                });
+                
+                document.getElementById('view-products-btn').addEventListener('click', () => {
+                    document.getElementById('add-product-form').classList.add('hidden');
+                    document.getElementById('admin-products').classList.remove('hidden');
+                    document.getElementById('admin-transactions').classList.add('hidden');
+                    this.displayAdminProducts();
+                });
+                
+                document.getElementById('view-transactions-btn').addEventListener('click', () => {
+                    document.getElementById('add-product-form').classList.add('hidden');
+                    document.getElementById('admin-products').classList.add('hidden');
+                    document.getElementById('admin-transactions').classList.remove('hidden');
+                    this.displayAdminTransactionHistory();
+                });
+                
+                document.getElementById('logout-admin').addEventListener('click', () => {
+                    this.handleLogout();
+                });
+                
+                document.getElementById('save-product-btn').addEventListener('click', () => {
+                    this.saveProduct();
+                });
+            }
+            
+            bindSearchEvents() {
+                document.getElementById('search-btn').addEventListener('click', () => {
+                    this.searchProducts();
+                });
+                
+                document.getElementById('search-input').addEventListener('keyup', (e) => {
+                    if (e.key === 'Enter') {
+                        this.searchProducts();
+                    }
+                });
+            }
+            
+            showHomePage() {
+                this.hideAllSections();
+                document.querySelector('.hero').classList.remove('hidden');
+                document.getElementById('login-page').classList.add('hidden');
+            }
+            
+            showLoginPage() {
+                this.hideAllSections();
+                document.getElementById('login-page').classList.remove('hidden');
+                document.querySelector('.hero').classList.add('hidden');
+            }
+            
+            showDashboard(userType) {
+                this.hideAllSections();
+                if (userType === 'customer') {
+                    document.getElementById('customer-dashboard').classList.remove('hidden');
+                    this.displayCustomerProducts();
+                    this.displayTransactionHistory();
+                    this.bindSearchEvents();
+                } else if (userType === 'admin') {
+                    document.getElementById('admin-dashboard').classList.remove('hidden');
+                    this.displayAdminProducts();
+                    this.displayAdminTransactionHistory();
+                    this.bindAdminEvents();
+                }
+                document.querySelector('.hero').classList.add('hidden');
+                this.bindPaymentEvents();
+            }
+            
+            hideAllSections() {
+                document.getElementById('login-page').classList.add('hidden');
+                document.getElementById('customer-dashboard').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.add('hidden');
+            }
+            
+            handleLogin() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const userType = document.querySelector('input[name="user-type"]:checked').value;
+                
+                if (!username || !password) {
+                    this.showToast('Please enter both username and password', 'error');
+                    return;
+                }
+                
+                // Simple authentication (in a real app, this would connect to a backend)
+                if (username && password) {
+                    this.currentUser = {
+                        username,
+                        type: userType
+                    };
+                    
+                    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                    
+                    this.showToast(`Welcome back, ${username}!`, 'success');
+                    this.updateNavigation();
+                    this.showDashboard(userType);
+                }
+            }
+            
+            handleLogout() {
+                this.currentUser = null;
+                localStorage.removeItem('currentUser');
+                this.showToast('You have been logged out successfully', 'info');
+                this.updateNavigation();
+                this.showHomePage();
+                
+                // Clear the login form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            }
+            
+            displayCustomerProducts() {
+                const container = document.getElementById('customer-products');
+                container.innerHTML = '';
+                
+                if (this.products.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: rgba(255,255,255,0.7);">No products available</p>';
+                    return;
+                }
+                
+                this.products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card fade-in';
+                    productCard.innerHTML = `
+                        <div class="product-img-container">
+                            <img src="${product.image}" alt="${product.name}" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <p class="product-price">₱${product.price.toLocaleString()}</p>
+                            <p class="product-description">${product.description}</p>
+                            <button class="btn btn-primary" onclick="motorShop.addToCart(${product.id})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(productCard);
+                });
+            }
+            
+            displayAdminProducts() {
+                const container = document.getElementById('admin-products-grid');
+                container.innerHTML = '';
+                
+                if (this.products.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: rgba(255,255,255,0.7);">No products available</p>';
+                    return;
+                }
+                
+                this.products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card fade-in';
+                    productCard.innerHTML = `
+                        <div class="product-img-container">
+                            <img src="${product.image}" alt="${product.name}" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <p class="product-price">₱${product.price.toLocaleString()}</p>
+                            <p class="product-description">${product.description}</p>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="admin-btn" onclick="motorShop.editProduct(${product.id})">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="admin-btn" style="background: linear-gradient(135deg, #e94560 0%, #c1355a 100%);" onclick="motorShop.deleteProduct(${product.id})">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(productCard);
+                });
+            }
+            
+            displayTransactionHistory() {
+                const container = document.getElementById('transaction-history');
+                container.innerHTML = '';
+                
+                const userTransactions = this.transactions.filter(t => 
+                    t.customer === (this.currentUser ? this.currentUser.username : "Guest")
+                );
+                
+                if (userTransactions.length === 0) {
+                    container.innerHTML = '<tr><td colspan="6" style="text-align: center; color: rgba(255,255,255,0.7);">No transactions found</td></tr>';
+                    return;
+                }
+                
+                userTransactions.forEach(transaction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${transaction.id}</td>
+                        <td>${transaction.date}</td>
+                        <td>${transaction.items}</td>
+                        <td>₱${transaction.amount.toLocaleString()}</td>
+                        <td>${transaction.paymentMethod}</td>
+                        <td><span class="status ${transaction.status}">${transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}</span></td>
+                    `;
+                    container.appendChild(row);
+                });
+            }
+            
+            displayAdminTransactionHistory() {
+                const container = document.getElementById('admin-transaction-history');
+                container.innerHTML = '';
+                
+                if (this.transactions.length === 0) {
+                    container.innerHTML = '<tr><td colspan="7" style="text-align: center; color: rgba(255,255,255,0.7);">No transactions found</td></tr>';
+                    return;
+                }
+                
+                this.transactions.forEach(transaction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${transaction.id}</td>
+                        <td>${transaction.customer}</td>
+                        <td>${transaction.date}</td>
+                        <td>${transaction.items}</td>
+                        <td>₱${transaction.amount.toLocaleString()}</td>
+                        <td>${transaction.paymentMethod}</td>
+                        <td><span class="status ${transaction.status}">${transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}</span></td>
+                    `;
+                    container.appendChild(row);
+                });
+            }
+            
+            searchProducts() {
+                const searchTerm = document.getElementById('search-input').value.toLowerCase();
+                const filteredProducts = this.products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) || 
+                    product.description.toLowerCase().includes(searchTerm)
+                );
+                
+                const container = document.getElementById('customer-products');
+                container.innerHTML = '';
+                
+                if (filteredProducts.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: rgba(255,255,255,0.7);">No products found matching your search</p>';
+                    return;
+                }
+                
+                filteredProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card fade-in';
+                    productCard.innerHTML = `
+                        <div class="product-img-container">
+                            <img src="${product.image}" alt="${product.name}" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <p class="product-price">₱${product.price.toLocaleString()}</p>
+                            <p class="product-description">${product.description}</p>
+                            <button class="btn btn-primary" onclick="motorShop.addToCart(${product.id})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(productCard);
+                });
+            }
+            
+            addToCart(productId) {
+                const product = this.products.find(p => p.id === productId);
+                const existingItem = this.cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    this.cart.push({
+                        ...product,
+                        quantity: 1
+                    });
+                }
+                
+                this.updateCart();
+                this.showToast(`${product.name} added to cart!`, 'success');
+            }
+            
+            removeFromCart(productId) {
+                this.cart = this.cart.filter(item => item.id !== productId);
+                this.updateCart();
+                this.showToast('Item removed from cart', 'info');
+            }
+            
+            updateQuantity(productId, change) {
+                const item = this.cart.find(item => item.id === productId);
+                if (item) {
+                    item.quantity += change;
+                    if (item.quantity <= 0) {
+                        this.removeFromCart(productId);
+                    } else {
+                        this.updateCart();
+                    }
+                }
+            }
+            
+            updateCart() {
+                // Save cart to localStorage
+                localStorage.setItem('cart', JSON.stringify(this.cart));
+                
+                // Update cart count
+                const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+                document.getElementById('cart-count').textContent = totalItems;
+                
+                // Update cart items
+                const container = document.getElementById('cart-items');
+                container.innerHTML = '';
+                let totalPrice = 0;
+                
+                if (this.cart.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.7);">Your cart is empty</p>';
+                    document.getElementById('cart-total').textContent = '₱0.00';
+                    return;
+                }
+                
+                this.cart.forEach(item => {
+                    totalPrice += item.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <p class="cart-item-price">₱${item.price.toLocaleString()}</p>
+                            <div class="cart-item-actions">
+                                <button class="quantity-btn" onclick="motorShop.updateQuantity(${item.id}, -1)">-</button>
+                                <span class="cart-item-quantity">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="motorShop.updateQuantity(${item.id}, 1)">+</button>
+                                <button class="remove-item" onclick="motorShop.removeFromCart(${item.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(cartItem);
+                });
+                
+                // Update total price
+                document.getElementById('cart-total').textContent = `₱${totalPrice.toLocaleString()}`;
+            }
+            
+            handleCheckout() {
+                if (this.cart.length === 0) {
+                    this.showToast('Your cart is empty!', 'error');
+                    return;
+                }
+                
+                if (!this.currentUser) {
+                    this.showToast('Please login to proceed with checkout', 'error');
+                    this.showLoginPage();
+                    return;
+                }
+                
+                document.getElementById('payment-modal').classList.add('active');
+                this.updatePaymentDetails();
+            }
+            
+            updatePaymentDetails() {
+                let paymentHTML = '';
+                
+                switch(this.currentPaymentMethod) {
+                    case 'credit-card':
+                        paymentHTML = `
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiry-date">Expiry Date</label>
+                                    <input type="text" id="expiry-date" class="form-control" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" class="form-control" placeholder="123">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-name">Name on Card</label>
+                                <input type="text" id="card-name" class="form-control" placeholder="Juan Dela Cruz">
+                            </div>
+                        `;
+                        break;
+                    case 'gcash':
+                        paymentHTML = `
+                            <div class="form-group">
+                                <label for="gcash-number">GCash Number</label>
+                                <input type="text" id="gcash-number" class="form-control" placeholder="09XX XXX XXXX">
+                            </div>
+                            <div class="form-group">
+                                <label for="gcash-name">Account Name</label>
+                                <input type="text" id="gcash-name" class="form-control" placeholder="Juan Dela Cruz">
+                            </div>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 10px;">
+                                You will be redirected to GCash to complete your payment.
+                            </p>
+                        `;
+                        break;
+                    case 'paypal':
+                        paymentHTML = `
+                            <div class="form-group">
+                                <label for="paypal-email">PayPal Email</label>
+                                <input type="email" id="paypal-email" class="form-control" placeholder="juan@example.com">
+                            </div>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 10px;">
+                                You will be redirected to PayPal to complete your payment.
+                            </p>
+                        `;
+                        break;
+                }
+                
+                document.getElementById('payment-details').innerHTML = paymentHTML;
+            }
+            
+            processPayment() {
+                const totalPrice = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                // Create new transaction
+                const newTransaction = {
+                    id: `ORD-${String(this.transactions.length + 1).padStart(3, '0')}`,
+                    customer: this.currentUser.username,
+                    date: new Date().toISOString().split('T')[0],
+                    items: this.cart.map(item => `${item.name} (x${item.quantity})`).join(', '),
+                    amount: totalPrice,
+                    paymentMethod: this.currentPaymentMethod === 'credit-card' ? 'Credit Card' : 
+                                  this.currentPaymentMethod === 'gcash' ? 'GCash' : 'PayPal',
+                    status: 'completed'
+                };
+                
+                // Add to transactions
+                this.transactions.push(newTransaction);
+                localStorage.setItem('transactions', JSON.stringify(this.transactions));
+                
+                // Clear cart
+                this.cart = [];
+                this.updateCart();
+                
+                // Hide payment modal and cart
+                document.getElementById('payment-modal').classList.remove('active');
+                document.getElementById('cart-container').classList.remove('active');
+                
+                // Show success message
+                this.showToast('Payment successful! Thank you for your purchase.', 'success');
+                
+                // Update transaction history
+                this.displayTransactionHistory();
+                this.displayAdminTransactionHistory();
+            }
+            
+            saveProduct() {
+                const name = document.getElementById('product-name').value;
+                const price = parseFloat(document.getElementById('product-price').value);
+                const image = document.getElementById('product-image').value;
+                const description = document.getElementById('product-description').value;
+                
+                if (!name || !price || !image || !description) {
+                    this.showToast('Please fill in all fields', 'error');
+                    return;
+                }
+                
+                const newProduct = {
+                    id: this.products.length > 0 ? Math.max(...this.products.map(p => p.id)) + 1 : 1,
+                    name,
+                    price,
+                    image,
+                    description
+                };
+                
+                this.products.push(newProduct);
+                localStorage.setItem('products', JSON.stringify(this.products));
+                
+                // Reset form
+                document.getElementById('product-name').value = '';
+                document.getElementById('product-price').value = '';
+                document.getElementById('product-image').value = '';
+                document.getElementById('product-description').value = '';
+                
+                // Update displays
+                this.displayAdminProducts();
+                this.displayCustomerProducts();
+                
+                this.showToast('Product added successfully!', 'success');
+            }
+            
+            editProduct(productId) {
+                const product = this.products.find(p => p.id === productId);
+                if (product) {
+                    document.getElementById('product-name').value = product.name;
+                    document.getElementById('product-price').value = product.price;
+                    document.getElementById('product-image').value = product.image;
+                    document.getElementById('product-description').value = product.description;
+                    
+                    // Remove the product from the list
+                    this.products = this.products.filter(p => p.id !== productId);
+                    localStorage.setItem('products', JSON.stringify(this.products));
+                    
+                    // Update displays
+                    this.displayAdminProducts();
+                    this.displayCustomerProducts();
+                    
+                    // Show the add product form
+                    document.getElementById('add-product-form').classList.remove('hidden');
+                    
+                    this.showToast('Product loaded for editing', 'info');
+                }
+            }
+            
+            deleteProduct(productId) {
+                if (confirm('Are you sure you want to delete this product?')) {
+                    this.products = this.products.filter(p => p.id !== productId);
+                    localStorage.setItem('products', JSON.stringify(this.products));
+                    
+                    // Update displays
+                    this.displayAdminProducts();
+                    this.displayCustomerProducts();
+                    
+                    this.showToast('Product deleted successfully!', 'success');
+                }
+            }
+            
+            showToast(message, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                document.body.appendChild(toast);
+                
+                // Remove toast after 5 seconds
+                setTimeout(() => {
+                    toast.style.animation = 'slideOutRight 0.3s ease-in';
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 300);
+                }, 5000);
+            }
+        }
+
+        // Initialize the application
+        const motorShop = new MotorShop();
+    </script>
+</body>
+</html>
+
+
